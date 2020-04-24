@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio Dinamico</title>
+</head>
+
+<body>
+    <h1>Mi nombre es {{nombre}}</h1>
+    <h2>Biblioteca</h2>
+    <ul>
+    {% for elem in libros -%}
+        {% if elem.isbn -%}
+            <li><a href="/libro/{{elem.isbn}}">{{elem.title}}</a></li>
+        {% else -%}
+            <li><a href='/'>No tiene ISBN</a></li>
+        {% endif -%}
+    {% endfor -%}
+    
+    </ul>
+</body>
+
+</html>

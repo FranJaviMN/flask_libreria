@@ -11,11 +11,25 @@ app=Flask(__name__)
 with open("books.json") as libros:
     datos=json.load(libros)
 
+#Creamos nuestra primera ruta que nos dirigira a la pagina principal en la que podremos ver todos los enlaces de los libros para ver su informacion.
+
 @app.route('/')
 def inicio():
     nombre='Francisco Javier Martín Núñez'
     return render_template('inicio.html', libros=datos, nombre=nombre)
 
+#Creamos nuestra segunda ruta en nuestro programa que nos ayudara a obtener la informacion de los libros
+
+@app.route('/libro/<isbn>')
+def libro(isbn):
+    for l in datos:
+
+        #Aqui debemos hacer una comprobacion doble ya que hay algunos libros que no tienen isbn, por lo que eso se debe comprobar y ademas
+            
+        if "isbn" in l.keys() and isbn == l["isbn"]:
+            return render_template('libros.html', libro=l) 
+
+    return abort(404)
 
 #port=os.environ["PORT"]
 app.run('0.0.0.0', debug=True)

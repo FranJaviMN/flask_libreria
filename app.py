@@ -2,6 +2,7 @@
 
 from flask import Flask, render_template, abort
 import json
+import os
 
 
 app=Flask(__name__)
@@ -31,5 +32,9 @@ def libro(isbn):
 
     return abort(404)
 
-#port=os.environ["PORT"]
-app.run('0.0.0.0', debug=True)
+@app.route('/categoria/<categoria>')
+def categoria(categoria):
+            return render_template('categoria.html', libros=datos, categoria=categoria)
+
+port=os.environ["PORT"]
+app.run('0.0.0.0', int(port), debug=True)

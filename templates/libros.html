@@ -38,7 +38,7 @@
     {% if libro.categories -%}
         {% for categorias in libro.categories -%}
     <ul>
-        <li><a>{{categorias}}</a></li>
+        <li><a href="/categoria/{{categorias}}">{{categorias}}</a></li>
     </ul>
         {% endfor -%}
     {% endif -%}
